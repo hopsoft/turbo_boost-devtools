@@ -232,32 +232,17 @@ export default class Devtool {
       <svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
       TARGET
     `
-    const subtitle = `
-      <b>id</b>: ${this.delegate.targetElement.id}<br>
-      <b>aria-labeled-by</b>: ${this.delegate.targetElement.labeledBy}<br>
-    `
-    let content = this.delegate.targetElement.viewStack
-      ?.reverse()
-      ?.map((view, index) => {
-        return this.delegate.triggerElement.sharedViews.includes(view)
-          ? `<div slot="content">${index + 1}. ${view}</div>`
-          : `<div slot="content-bottom">${index + 1}. ${view}</div>`
-      }, this)
-      ?.join('')
 
-    content = `
-      <div slot="content-top">
-        <svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-        <b>View Stack</b>
-      </div>
-      ${content}
-    `
-
-    const tooltip = appendTooltip(title, subtitle, content, {
-      backgroundColor: 'lightcyan',
-      color: 'darkcyan',
-      position: 'bottom'
-    })
+    const tooltip = appendTooltip(
+      title,
+      this.delegate.targetTooltipData?.subtitle || '',
+      this.delegate.targetTooltipData?.content || '',
+      {
+        backgroundColor: 'lightcyan',
+        color: 'darkcyan',
+        position: 'bottom'
+      }
+    )
 
     const coords = coordinates(this.delegate.targetElement)
     const top = Math.ceil(coords.top + tooltip.offsetHeight)
@@ -280,33 +265,16 @@ export default class Devtool {
       <svg xmlns="http://www.w3.org/2000/svg" style="display:inline;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
       TRIGGER
     `
-    const subtitle = `
-      <b>id</b>: ${this.delegate.triggerElement.id}<br>
-      <b>aria-controls</b>: ${this.delegate.triggerElement.controls}<br>
-      <b>aria-expanded</b>: ${this.delegate.triggerElement.expanded}<br>
-      <b>remember</b>: ${this.delegate.triggerElement.remember}<br>
-    `
-    let content = this.delegate.triggerElement.viewStack
-      ?.reverse()
-      ?.map((view, index) => {
-        return this.delegate.triggerElement.sharedViews.includes(view)
-          ? `<div slot="content">${index + 1}. ${view}</div>`
-          : `<div slot="content-bottom">${index + 1}. ${view}</div>`
-      }, this)
-      ?.join('')
 
-    content = `
-      <div slot="content-top">
-        <svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-        <b>View Stack</b>
-      </div>
-      ${content}
-    `
-
-    const tooltip = appendTooltip(title, subtitle, content, {
-      backgroundColor: 'lavender',
-      color: 'blueviolet'
-    })
+    const tooltip = appendTooltip(
+      title,
+      this.delegate.triggerTooltipData?.subtitle || '',
+      this.delegate.triggerTooltipData?.content || '',
+      {
+        backgroundColor: 'lavender',
+        color: 'blueviolet'
+      }
+    )
 
     const coords = coordinates(this.delegate.triggerElement)
     const top = Math.ceil(coords.top - tooltip.offsetHeight * 2)
