@@ -323,7 +323,7 @@ export default class Devtool {
       tooltip.lineToTarget = new LeaderLine(tooltip, targetTooltip, {
         ...this.leaderLineOptions,
         color: 'blueviolet',
-        middleLabel: 'toggles',
+        middleLabel: this.delegate.targetLineLabel,
         size: 2.1
       })
 
@@ -338,7 +338,7 @@ export default class Devtool {
       tooltip.lineToRendering = new LeaderLine(tooltip, renderingTooltip, {
         ...this.leaderLineOptions,
         color: 'blueviolet',
-        middleLabel: 'renders & morphs',
+        middleLabel: this.delegate.renderingLineLabel,
         size: 2.1
       })
 
