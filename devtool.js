@@ -237,13 +237,13 @@ export default class Devtool {
       <b>aria-labeled-by</b>: ${this.delegate.targetElement.labeledBy}<br>
     `
     let content = this.delegate.targetElement.viewStack
-      .reverse()
-      .map((view, index) => {
+      ?.reverse()
+      ?.map((view, index) => {
         return this.delegate.triggerElement.sharedViews.includes(view)
           ? `<div slot="content">${index + 1}. ${view}</div>`
           : `<div slot="content-bottom">${index + 1}. ${view}</div>`
       }, this)
-      .join('')
+      ?.join('')
 
     content = `
       <div slot="content-top">
@@ -287,13 +287,13 @@ export default class Devtool {
       <b>remember</b>: ${this.delegate.triggerElement.remember}<br>
     `
     let content = this.delegate.triggerElement.viewStack
-      .reverse()
-      .map((view, index) => {
+      ?.reverse()
+      ?.map((view, index) => {
         return this.delegate.triggerElement.sharedViews.includes(view)
           ? `<div slot="content">${index + 1}. ${view}</div>`
           : `<div slot="content-bottom">${index + 1}. ${view}</div>`
       }, this)
-      .join('')
+      ?.join('')
 
     content = `
       <div slot="content-top">
