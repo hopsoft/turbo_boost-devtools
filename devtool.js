@@ -60,7 +60,7 @@ export default class Devtool {
 
     this.eventListeners['turbo:load'] = debouncedHide
     this.eventListeners['turbo-frame:load'] = debouncedHide
-    if (TurboBoost) {
+    if (window.TurboBoost) {
       this.eventListeners[TurboBoost.Commands.events.finish] = debouncedHide
     }
 

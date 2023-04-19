@@ -79,10 +79,13 @@ function autoRestart () {
 
 addEventListener('turbo:load', autoRestart)
 addEventListener('turbo-frame:load', autoRestart)
-addEventListener(TurboBoost.Commands.events.success, autoRestart)
-addEventListener(TurboBoost.Commands.events.finish, autoRestart)
 addEventListener('turbo-boost:devtools-connect', autoRestart)
 addEventListener('turbo-boost:devtools-close', stop)
+
+if (window.TurboBoost) {
+  addEventListener(TurboBoost.Commands.events.success, autoRestart)
+  addEventListener(TurboBoost.Commands.events.finish, autoRestart)
+}
 
 function register (name, label) {
   if (!supervisorElement) return
