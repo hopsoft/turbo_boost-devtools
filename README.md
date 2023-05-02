@@ -31,6 +31,7 @@
 1. Run `yarn` to pick up the latest
 1. Run `yarn publish --access public`
 1. Yarn will prompt you for the new version. Pre-release versions use `-preN`
+1. Commit and push changes to GitHub
 1. Create a new release on GitHub ([here](https://github.com/hopsoft/turbo_boost-devtools/releases)) and generate the changelog for the stable release for it
 
 ## License
