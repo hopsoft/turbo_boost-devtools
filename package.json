@@ -26,7 +26,8 @@
     "prettier-standard": "^16.4.1"
   },
   "scripts": {
-    "build": "esbuild index.js --bundle --minify --sourcemap --format=esm --target=es2020,chrome58,firefox57,safari11 --analyze --outfile=dist/@turbo-boost/devtools.js",
-    "build:watch": "yarn build -- --watch"
+    "build": "esbuild src/index.js --bundle --minify --sourcemap --format=esm --target=es2020,chrome79,edge44,firefox71,opera65,safari13 --analyze --outfile=dist/@turbo-boost/devtools.js",
+    "build:watch": "yarn build -- --watch",
+    "standardize": "yarn run prettier-standard src/**/*.js"
   }
 }
