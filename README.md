@@ -24,7 +24,7 @@
   </p>
 </p>
 
-**TurboBoost Devtools makes it easy to create developer tools for the Hotwire ecosystem (i.e. the TurboBoost suite, CableReady, StimulusReflex, etc.)**
+**Devtools for the Hotwire/Turbo ecosystem (TurboBoost, CableReady, StimulusReflex, etc.)**
 
 ## Releasing
 
