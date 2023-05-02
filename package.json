@@ -1,7 +1,7 @@
 {
   "name": "@turbo-boost/devtools",
   "version": "0.0.1",
-  "description": "A common DevTools package for the TurboBoost suite",
+  "description": "Devtools for the Hotwire ecosystem (TurboBoost, CableReady, StimulusReflex, etc.)",
   "main": "dist/@turbo-boost/devtools.js",
   "files": [
     "dist"
