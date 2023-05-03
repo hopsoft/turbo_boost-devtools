@@ -189,7 +189,7 @@ export default class Devtool {
 
     const title = `
       <svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-      RENDERING
+      RENDERING - &lt;${this.delegate.triggerElement.tagName.toLowerCase()}&gt;
     `
     const subtitle = `
       <b>partial</b>: ${this.delegate.triggerElement.renders || 'unknown'}<br>
@@ -230,7 +230,7 @@ export default class Devtool {
 
     const title = `
       <svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-      TARGET
+      TARGET - &lt;${this.delegate.targetElement.tagName.toLowerCase()}&gt;
     `
 
     const tooltip = appendTooltip(
@@ -263,7 +263,7 @@ export default class Devtool {
     if (!this.delegate.triggerElement) return
     const title = `
       <svg xmlns="http://www.w3.org/2000/svg" style="display:inline;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-      TRIGGER
+      TRIGGER - &lt;${this.delegate.triggerElement.tagName.toLowerCase()}&gt;
     `
 
     const tooltip = appendTooltip(
