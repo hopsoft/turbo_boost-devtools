@@ -9,11 +9,11 @@ import {
 } from './utils/dom.js'
 
 function appendTooltip (title, subtitle, content, options = {}) {
-  let { backgroundColor, color, position } = options
+  let { backgroundColor, color, position, id } = options
   color = color || 'white'
   position = position || 'top'
   return appendHTML(`
-    <turbo-boost-devtool-tooltip position="${position}" background-color="${backgroundColor}" color="${color}">
+    <turbo-boost-devtool-tooltip id="${id}" position="${position}" background-color="${backgroundColor}" color="${color}">
       <div slot='title'>${title}</div>
       <div slot='subtitle'>${subtitle}</div>
       ${content}
@@ -202,7 +202,8 @@ export default class Devtool {
     `
     const tooltip = appendTooltip(title, subtitle, content, {
       backgroundColor: 'lightyellow',
-      color: 'chocolate'
+      color: 'chocolate',
+      id: `${this.delegate.id}-rendering`
     })
 
     const coords = coordinates(this.delegate.morphElement)
@@ -240,7 +241,8 @@ export default class Devtool {
       {
         backgroundColor: 'lightcyan',
         color: 'darkcyan',
-        position: 'bottom'
+        position: 'bottom',
+        id: `${this.delegate.id}-target`
       }
     )
 
@@ -272,7 +274,8 @@ export default class Devtool {
       this.delegate.triggerTooltipData?.content || '',
       {
         backgroundColor: 'lavender',
-        color: 'blueviolet'
+        color: 'blueviolet',
+        id: `${this.delegate.id}-trigger`
       }
     )
 
@@ -297,8 +300,8 @@ export default class Devtool {
 
       targetTooltip.drag.onMove = () => {
         targetTooltip.line.position()
-        tooltip.lineToTarget.position()
-        tooltip.lineToRendering.position()
+        tooltip.lineToTarget?.position()
+        tooltip.lineToRendering?.position()
       }
     }
 
@@ -313,7 +316,7 @@ export default class Devtool {
       renderingTooltip.drag.onMove = () => {
         renderingTooltip.line.position()
         if (tooltip.lineToTarget) tooltip.lineToTarget.position()
-        tooltip.lineToRendering.position()
+        tooltip.lineToRendering?.position()
       }
     }
 
