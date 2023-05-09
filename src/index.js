@@ -56,6 +56,11 @@ function decorateElementWithDevtool (element, name, label) {
   })
 }
 
+;(async () => {
+  // we cannot detect customElements.get("cable-ready-updates-for") because they are lazily initialized
+  if (window.CableReady) await import('./delegates/cable_ready.js')
+})()
+
 export { Devtool, decorateElementWithDevtool }
 
 export default { restart, start, stop }
