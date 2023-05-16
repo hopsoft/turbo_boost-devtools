@@ -5,6 +5,25 @@ export default class TooltipElement extends HTMLElement {
     this.shadowRoot.innerHTML = this.html
   }
 
+  connectedCallback () {
+    const savedTransform = localStorage.getItem(
+      `turbo-boost-devtools-${location.href}-${this.id}-transform`
+    )
+
+    if (savedTransform) {
+      this.style.transform = savedTransform
+    }
+  }
+
+  disconnectedCallback () {
+    if (this.id !== 'undefined' && this.id !== '') {
+      localStorage.setItem(
+        `turbo-boost-devtools-${location.href}-${this.id}-transform`,
+        this.style.transform
+      )
+    }
+  }
+
   get color () {
     return this.getAttribute('color') || 'darkslategray'
   }
