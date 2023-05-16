@@ -201,9 +201,9 @@ export default class Devtool {
       </div>
     `
     const tooltip = appendTooltip(title, subtitle, content, {
+      id: `${this.delegate.id}-rendering`,
       backgroundColor: 'lightyellow',
-      color: 'chocolate',
-      id: `${this.delegate.id}-rendering`
+      color: 'chocolate'
     })
 
     const coords = coordinates(this.delegate.morphElement)
@@ -239,10 +239,10 @@ export default class Devtool {
       this.delegate.targetTooltipData?.subtitle || '',
       this.delegate.targetTooltipData?.content || '',
       {
+        id: `${this.delegate.id}-target`,
         backgroundColor: 'lightcyan',
         color: 'darkcyan',
-        position: 'bottom',
-        id: `${this.delegate.id}-target`
+        position: 'bottom'
       }
     )
 
@@ -273,9 +273,9 @@ export default class Devtool {
       this.delegate.triggerTooltipData?.subtitle || '',
       this.delegate.triggerTooltipData?.content || '',
       {
+        id: `${this.delegate.id}-trigger`,
         backgroundColor: 'lavender',
-        color: 'blueviolet',
-        id: `${this.delegate.id}-trigger`
+        color: 'blueviolet'
       }
     )
 
