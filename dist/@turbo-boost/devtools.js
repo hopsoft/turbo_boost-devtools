@@ -217,7 +217,7 @@ var Z=Object.defineProperty,tt=Object.defineProperties;var et=Object.getOwnPrope
               <svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
               <b>element log</b>
             </div>
-            ${t.targetElementLog.slice(-10).map(e=>`<div slot="content">${e}</div>`).join("")}
+            ${t.targetElementLog.queue.slice(-10).map(e=>`<div slot="content">${e}</div>`).join("")}
           `}}},triggerTooltipData:{get(){return{subtitle:`
             <b>identifier</b>: ${this.identifier}<br>
             <b>only</b>: ${this.getAttribute("only")||""}<br>
@@ -229,6 +229,6 @@ var Z=Object.defineProperty,tt=Object.defineProperties;var et=Object.getOwnPrope
               <svg xmlns="http://www.w3.org/2000/svg" style="display:inline-block;" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
               <b>element log</b>
             </div>
-            ${t.triggerElementLog.slice(-10).map(e=>`<div slot="content">${e}</div>`).join("")}
+            ${t.triggerElementLog.queue.slice(-10).map(e=>`<div slot="content">${e}</div>`).join("")}
           `}}}})}function gt(){document.addEventListener("turbo-boost:devtools-start",()=>g.register("updates-for","updates-for")),window.CableReady.devtools=V,document.addEventListener("turbo:load",()=>{document.querySelectorAll("updates-for").forEach(t=>{M(t,"updates-for","updates"),Y(t),t.initializeDevtool()}),document.querySelectorAll("cable-ready-updates-for").forEach(t=>{M(t,"updates-for","updates"),Y(t),t.initializeDevtool()}),CableReady.devtools.start()})}var Q=d(()=>{O();O();gt()});function M(t,e,o){Object.assign(t,{initializeDevtool(){let r=()=>this.devtool.show();addEventListener("turbo-boost:devtools-start",()=>{this.devtool=new g(this),this.addEventListener("mouseenter",r)}),addEventListener("turbo-boost:devtools-stop",()=>{this.removeEventListener("mouseenter",r),this.removeDevtool()}),this.dispatchEvent(new CustomEvent("turbo-boost:devtools-connect",{bubbles:!0}))},hideDevtool(){var r;(r=this.devtool)==null||r.hide({active:!1})},removeDevtool(){this.devtool.hide({active:!1}),this.devtool.unregisterEventListeners(),delete this.devtool},name:e,targetLineLabel:o}),Object.defineProperties(t,{triggerElement:{get(){return t}},morphElement:{get(){return t}},targetElement:{get(){return t}}})}var pt,bt,mt,V,O=d(()=>{H();X();({restart:pt,start:bt,stop:mt}=x);(async()=>window.CableReady&&await Promise.resolve().then(()=>(Q(),ut)))();V={restart:pt,start:bt,stop:mt}});O();export{g as Devtool,M as decorateElementWithDevtool,V as default};
 //# sourceMappingURL=devtools.js.map
