@@ -18,7 +18,8 @@
   "author": "Nate Hopkins (hopsoft) <natehop@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "@hotwired/turbo-rails": ">= 7.2"
+    "@hotwired/turbo-rails": ">= 7.2",
+    "cable_ready": ">= 5.0.0"
   },
   "devDependencies": {
     "esbuild": "^0.17.16",
