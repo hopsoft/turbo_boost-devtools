@@ -29,6 +29,8 @@
 ## Releasing
 
 1. Run `yarn` to pick up the latest
+1. Run `yarn standardize` to ensure standard formatting has been applied
+1. Commit and push any changes to GitHub
 1. Run `yarn publish --access public`
 1. Yarn will prompt you for the new version. Pre-release versions use `-preN`
 1. Commit and push changes to GitHub
