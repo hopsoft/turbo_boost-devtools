@@ -34,26 +34,20 @@ function decorateElementWithDevtool (element, name, label) {
     targetLineLabel: label
   })
 
-  Object.defineProperties(element, {
-    // the element references below are defaults to be overriden if necessary
-    triggerElement: {
-      get () {
-        return element
-      }
-    },
+  // the element references below are defaults that are placed on the receiver if not present
+  const properties = ['triggerElement', 'morphElement', 'targetElement']
 
-    morphElement: {
-      get () {
-        return element
-      }
-    },
-
-    targetElement: {
-      get () {
-        return element
-      }
-    }
-  })
+  properties
+    .filter(property => {
+      return element[property] === undefined
+    })
+    .forEach(property => {
+      Object.defineProperty(element, property, {
+        get () {
+          return element
+        }
+      })
+    })
 }
 
 ;(async () => {
