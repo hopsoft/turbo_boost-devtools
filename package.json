@@ -22,7 +22,7 @@
     "cable_ready": ">= 5.0.0"
   },
   "devDependencies": {
-    "esbuild": "^0.17.16",
+    "esbuild": "^0.19.2",
     "eslint": "^8.38.0",
     "prettier-standard": "^16.4.1"
   },
