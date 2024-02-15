@@ -1,7 +1,7 @@
 import { appendHTML } from '../utils/dom.js'
 
 export default class SupervisorElement extends HTMLElement {
-  constructor () {
+  constructor() {
     super()
     this.enabledDevtools = {}
     this.attachShadow({ mode: 'open' })
@@ -21,7 +21,7 @@ export default class SupervisorElement extends HTMLElement {
     })
   }
 
-  enableDevtool (name) {
+  enableDevtool(name) {
     if (this.enabledDevtools[name]) return
     this.enabledDevtools[name] = true
     this.dispatchEvent(
@@ -32,7 +32,7 @@ export default class SupervisorElement extends HTMLElement {
     )
   }
 
-  disableDevtool (name) {
+  disableDevtool(name) {
     if (!this.enabledDevtools[name]) return
     delete this.enabledDevtools[name]
     this.dispatchEvent(
@@ -43,22 +43,22 @@ export default class SupervisorElement extends HTMLElement {
     )
   }
 
-  close () {
+  close() {
     this.devtoolElements.forEach(el => {
       if (el.checked) el.uncheck()
     })
     this.remove()
   }
 
-  get devtoolElements () {
+  get devtoolElements() {
     return this.querySelectorAll('[slot="devtool"]')
   }
 
-  get closeElement () {
+  get closeElement() {
     return this.querySelector('button')
   }
 
-  get html () {
+  get html() {
     return `
       <style>${this.stylesheet}</style>
       <div>
@@ -69,7 +69,7 @@ export default class SupervisorElement extends HTMLElement {
     `
   }
 
-  get stylesheet () {
+  get stylesheet() {
     return `
       :host {
         background-color: gainsboro;

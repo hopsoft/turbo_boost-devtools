@@ -1,17 +1,17 @@
-export function template (html) {
+export function template(html) {
   let template = document.createElement('template')
   template.innerHTML = html
   return template
 }
 
-export function appendHTML (html, parent) {
+export function appendHTML(html, parent) {
   parent = parent || document.body
   const clone = template(html).content.cloneNode(true)
   const child = clone.querySelector('*')
   return parent.appendChild(child)
 }
 
-export function addHighlight (element, options = {}) {
+export function addHighlight(element, options = {}) {
   if (!element) return
   removeHighlight(element)
   let { outline, outlineOffset } = options
@@ -41,7 +41,7 @@ export function addHighlight (element, options = {}) {
   element.dataset.turboBoostHighlight = true
 }
 
-export function removeHighlight (element) {
+export function removeHighlight(element) {
   if (!element) return
   if (element.originalStyles) {
     for (const [key, value] of Object.entries(element.originalStyles))
@@ -51,7 +51,7 @@ export function removeHighlight (element) {
   delete element.dataset.turboBoostHighlight
 }
 
-export function coordinates (element) {
+export function coordinates(element) {
   if (!element) return {}
   const rect = element.getBoundingClientRect()
   const width = element.offsetWidth
@@ -63,7 +63,7 @@ export function coordinates (element) {
   return { top, left, right, bottom, width, height }
 }
 
-export function attempt (callback) {
+export function attempt(callback) {
   try {
     callback()
   } catch {}

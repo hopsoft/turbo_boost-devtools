@@ -22,13 +22,13 @@
     "cable_ready": ">= 5.0.0"
   },
   "devDependencies": {
-    "esbuild": "^0.19.2",
-    "eslint": "^8.38.0",
-    "prettier-standard": "^16.4.1"
+    "esbuild": "^0.20.0",
+    "eslint": "^8.48.0",
+    "prettier": "^3.0.3"
   },
   "scripts": {
     "build": "esbuild src/index.js --bundle --minify --sourcemap --format=esm --target=es2020,chrome79,edge44,firefox71,opera65,safari13 --analyze --outfile=dist/@turbo-boost/devtools.js",
-    "build:watch": "yarn build -- --watch",
-    "standardize": "yarn run prettier-standard src/**/*.js"
+    "build:watch": "npm run build -- --watch",
+    "standardize": "npx prettier --write ."
   }
 }

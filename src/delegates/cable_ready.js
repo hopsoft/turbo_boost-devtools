@@ -1,10 +1,10 @@
 import devtools from '..'
 import { Devtool, decorateElementWithDevtool } from '..'
 
-function defineTooltipData (element) {
+function defineTooltipData(element) {
   Object.defineProperties(element, {
     targetTooltipData: {
-      get () {
+      get() {
         return {
           subtitle: `
             <b>identifier</b>: ${element.identifier}<br>
@@ -25,16 +25,14 @@ function defineTooltipData (element) {
     },
 
     triggerTooltipData: {
-      get () {
+      get() {
         return {
           subtitle: `
             <b>identifier</b>: ${this.identifier}<br>
             <b>only</b>: ${this.getAttribute('only') || ''}<br>
             <b>url</b>: ${this.getAttribute('url') || location.href}<br>
             <b>debounce (client-side)</b>: ${this.debounce}<br>
-            <b>ignore-inner-updates</b>: ${this.hasAttribute(
-              'ignore-inner-updates'
-            )}
+            <b>ignore-inner-updates</b>: ${this.hasAttribute('ignore-inner-updates')}
           `,
           content: `
             <div slot="content-top">
@@ -52,7 +50,7 @@ function defineTooltipData (element) {
   })
 }
 
-function initialize () {
+function initialize() {
   document.addEventListener('turbo-boost:devtools-start', () =>
     Devtool.register('updates-for', 'updates-for')
   )

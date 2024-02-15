@@ -1,11 +1,12 @@
+import VERSION from './version'
 import supervisor from './supervisor'
 import Devtool from './devtool'
 
 const { restart, start, stop } = supervisor
 
-function decorateElementWithDevtool (element, name, label) {
+function decorateElementWithDevtool(element, name, label) {
   Object.assign(element, {
-    initializeDevtool () {
+    initializeDevtool() {
       const mouseenter = () => this.devtool.show()
 
       addEventListener('turbo-boost:devtools-start', () => {
@@ -18,16 +19,14 @@ function decorateElementWithDevtool (element, name, label) {
         this.removeDevtool()
       })
 
-      this.dispatchEvent(
-        new CustomEvent('turbo-boost:devtools-connect', { bubbles: true })
-      )
+      this.dispatchEvent(new CustomEvent('turbo-boost:devtools-connect', { bubbles: true }))
     },
-    hideDevtool () {
+    hideDevtool() {
       this.devtool?.hide({ active: false })
     },
-    removeDevtool () {
-      this.devtool.hide({ active: false })
-      this.devtool.unregisterEventListeners()
+    removeDevtool() {
+      this.devtool?.hide({ active: false })
+      this.devtool?.unregisterEventListeners()
       delete this.devtool
     },
     name,
@@ -43,7 +42,7 @@ function decorateElementWithDevtool (element, name, label) {
     })
     .forEach(property => {
       Object.defineProperty(element, property, {
-        get () {
+        get() {
           return element
         }
       })
@@ -57,4 +56,4 @@ function decorateElementWithDevtool (element, name, label) {
 
 export { Devtool, decorateElementWithDevtool }
 
-export default { restart, start, stop }
+export default { restart, start, stop, VERSION }
