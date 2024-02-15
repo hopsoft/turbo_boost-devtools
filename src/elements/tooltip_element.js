@@ -1,42 +1,37 @@
 export default class TooltipElement extends HTMLElement {
-  constructor () {
+  constructor() {
     super()
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.innerHTML = this.html
   }
 
-  connectedCallback () {
-    const savedTransform = localStorage.getItem(
-      `turbo-boost-devtools-${location.href}-${this.id}-transform`
-    )
+  connectedCallback() {
+    const savedTransform = localStorage.getItem(`turbo-boost-devtools-${location.href}-${this.id}-transform`)
 
     if (savedTransform) {
       this.style.transform = savedTransform
     }
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     if (this.id !== 'undefined' && this.id !== '') {
-      localStorage.setItem(
-        `turbo-boost-devtools-${location.href}-${this.id}-transform`,
-        this.style.transform
-      )
+      localStorage.setItem(`turbo-boost-devtools-${location.href}-${this.id}-transform`, this.style.transform)
     }
   }
 
-  get color () {
+  get color() {
     return this.getAttribute('color') || 'darkslategray'
   }
 
-  get backgroundColor () {
+  get backgroundColor() {
     return this.getAttribute('background-color') || 'gainsboro'
   }
 
-  get position () {
+  get position() {
     return this.getAttribute('position') || 'top'
   }
 
-  get html () {
+  get html() {
     return `
       <style>${this.stylesheet}</style>
       <div role="container">
@@ -52,7 +47,7 @@ export default class TooltipElement extends HTMLElement {
     `
   }
 
-  get stylesheet () {
+  get stylesheet() {
     return `
       :host {
         display: block;

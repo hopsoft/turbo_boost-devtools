@@ -1,14 +1,8 @@
 // Icons courtesy of https://feathericons.com/
 import supervisor from './supervisor'
-import {
-  appendHTML,
-  addHighlight,
-  attempt,
-  coordinates,
-  removeHighlight
-} from './utils/dom.js'
+import { appendHTML, addHighlight, attempt, coordinates, removeHighlight } from './utils/dom.js'
 
-function appendTooltip (title, subtitle, content, options = {}) {
+function appendTooltip(title, subtitle, content, options = {}) {
   let { backgroundColor, color, position, id } = options
   color = color || 'white'
   position = position || 'top'
@@ -24,7 +18,7 @@ function appendTooltip (title, subtitle, content, options = {}) {
 let activeTarget
 
 export default class Devtool {
-  constructor (delegate) {
+  constructor(delegate) {
     this.delegate = delegate
 
     let hideTimeout
@@ -49,8 +43,7 @@ export default class Devtool {
 
     this.eventListeners['turbo-boost:devtool-disable'] = event => {
       const { name } = event.detail
-      if (name === this.delegate.name)
-        removeHighlight(this.delegate.triggerElement)
+      if (name === this.delegate.name) removeHighlight(this.delegate.triggerElement)
     }
 
     this.eventListeners['click'] = event => {
@@ -67,23 +60,23 @@ export default class Devtool {
     this.registerEventListeners()
   }
 
-  registerEventListeners () {
+  registerEventListeners() {
     Object.entries(this.eventListeners).forEach(([type, listener]) => {
       addEventListener(type, listener)
     })
   }
 
-  unregisterEventListeners () {
+  unregisterEventListeners() {
     Object.entries(this.eventListeners).forEach(([type, listener]) => {
       removeEventListener(type, listener)
     })
   }
 
-  get eventListeners () {
+  get eventListeners() {
     return this._eventListeners || (this._eventListeners = {})
   }
 
-  show () {
+  show() {
     if (!this.enabled) return
 
     if (this.active) return
@@ -103,14 +96,9 @@ export default class Devtool {
 
     this.renderingTooltip = this.createRenderingTooltip()
     this.targetTooltip = this.createTargetTooltip()
-    this.triggerTooltip = this.createTriggerTooltip(
-      this.targetTooltip,
-      this.renderingTooltip
-    )
+    this.triggerTooltip = this.createTriggerTooltip(this.targetTooltip, this.renderingTooltip)
 
-    document
-      .querySelectorAll('.leader-line')
-      .forEach(el => (el.style.zIndex = 100000))
+    document.querySelectorAll('.leader-line').forEach(el => (el.style.zIndex = 100000))
 
     const data = {
       morph: {
@@ -141,16 +129,14 @@ export default class Devtool {
     console.table(data)
   }
 
-  hide ({ active: active = false }) {
-    document
-      .querySelectorAll('turbo-boost-devtool-tooltip')
-      .forEach(tooltip => {
-        attempt(() => tooltip.line.remove())
-        attempt(() => tooltip.drag.remove())
-        attempt(() => tooltip.lineToRendering.remove())
-        attempt(() => tooltip.lineToTarget.remove())
-        attempt(() => tooltip.remove())
-      })
+  hide({ active: active = false }) {
+    document.querySelectorAll('turbo-boost-devtool-tooltip').forEach(tooltip => {
+      attempt(() => tooltip.line.remove())
+      attempt(() => tooltip.drag.remove())
+      attempt(() => tooltip.lineToRendering.remove())
+      attempt(() => tooltip.lineToTarget.remove())
+      attempt(() => tooltip.remove())
+    })
 
     document.querySelectorAll('[data-turbo-boost-highlight]').forEach(el => {
       if (!el.tagName.match(/turbo-boost-toggle-trigger/i)) removeHighlight(el)
@@ -159,24 +145,24 @@ export default class Devtool {
     this.active = active
   }
 
-  get active () {
+  get active() {
     return activeTarget === this.delegate
   }
 
-  set active (value) {
+  set active(value) {
     if (value) activeTarget = this.delegate
     else activeTarget = null
   }
 
-  get enabled () {
+  get enabled() {
     return supervisor.enabled(this.delegate.name)
   }
 
-  static register (name, label) {
+  static register(name, label) {
     supervisor.register(name, label)
   }
 
-  createRenderingTooltip () {
+  createRenderingTooltip() {
     if (!this.delegate.triggerElement.renders)
       return console.debug(
         `Unable to create the rendering tooltip! The trigger element must set the 'renders' attribute.`
@@ -207,9 +193,7 @@ export default class Devtool {
     })
 
     const coords = coordinates(this.delegate.morphElement)
-    const top = Math.ceil(
-      coords.top + coords.height / 2 - tooltip.offsetHeight / 2
-    )
+    const top = Math.ceil(coords.top + coords.height / 2 - tooltip.offsetHeight / 2)
     const left = Math.ceil(coords.left + coords.width + 100)
     tooltip.style.top = `${top}px`
     tooltip.style.left = `${left}px`
@@ -223,7 +207,7 @@ export default class Devtool {
     return tooltip
   }
 
-  createTargetTooltip () {
+  createTargetTooltip() {
     if (!this.delegate.targetElement)
       return console.debug(
         `Unable to create the target tooltip! No element matches the DOM id: '${this.delegate.triggerElement.controls}'`
@@ -261,7 +245,7 @@ export default class Devtool {
     return tooltip
   }
 
-  createTriggerTooltip (targetTooltip, renderingTooltip) {
+  createTriggerTooltip(targetTooltip, renderingTooltip) {
     if (!this.delegate.triggerElement) return
     const title = `
       <svg xmlns="http://www.w3.org/2000/svg" style="display:inline;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
@@ -330,7 +314,7 @@ export default class Devtool {
     return tooltip
   }
 
-  get leaderLineOptions () {
+  get leaderLineOptions() {
     return {
       dash: { animation: true },
       dropShadow: { opacity: 0.3 },

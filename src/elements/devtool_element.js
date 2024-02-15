@@ -1,5 +1,5 @@
 export default class DevtoolElement extends HTMLElement {
-  constructor () {
+  constructor() {
     super()
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.innerHTML = this.html
@@ -12,37 +12,37 @@ export default class DevtoolElement extends HTMLElement {
     )
   }
 
-  toggle () {
+  toggle() {
     this.checked ? this.uncheck() : this.check()
   }
 
-  check () {
+  check() {
     this.checkboxElement.checked = true
     this.dispatchEvent(new CustomEvent('change', { bubbles: true }))
   }
 
-  uncheck () {
+  uncheck() {
     this.checkboxElement.checked = false
     this.dispatchEvent(new CustomEvent('change', { bubbles: true }))
   }
 
-  get name () {
+  get name() {
     return this.getAttribute('name')
   }
 
-  get checked () {
+  get checked() {
     return this.checkboxElement.checked
   }
 
-  get checkboxElement () {
+  get checkboxElement() {
     return this.shadowRoot.querySelector('input')
   }
 
-  get labelElement () {
+  get labelElement() {
     return this.shadowRoot.querySelector('label')
   }
 
-  get html () {
+  get html() {
     return `
       <style>${this.stylesheet}</style>
       <div>
@@ -52,7 +52,7 @@ export default class DevtoolElement extends HTMLElement {
     `
   }
 
-  get stylesheet () {
+  get stylesheet() {
     return `
       :host, :host * {
         cursor: pointer;

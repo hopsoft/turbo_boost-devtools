@@ -10,7 +10,7 @@ customElements.define('turbo-boost-devtool-tooltip', TooltipElement)
 
 let supervisorElement
 
-function makeDraggable () {
+function makeDraggable() {
   if (!supervisorElement) return
   try {
     new PlainDraggable(supervisorElement)
@@ -19,7 +19,7 @@ function makeDraggable () {
   }
 }
 
-function stop () {
+function stop() {
   if (stopped()) return
   supervisorElement.close()
   supervisorElement.dispatchEvent(
@@ -31,13 +31,11 @@ function stop () {
   dependencies.removeAll()
 }
 
-function start () {
+function start() {
   if (started()) return
   dependencies.add(dependencies.LeaderLine)
   dependencies.add(dependencies.PlainDraggable)
-  supervisorElement = appendHTML(
-    '<turbo-boost-devtool-supervisor></turbo-boost-devtool-supervisor>'
-  )
+  supervisorElement = appendHTML('<turbo-boost-devtool-supervisor></turbo-boost-devtool-supervisor>')
   setTimeout(makeDraggable, 200)
   supervisorElement.dispatchEvent(
     new CustomEvent('turbo-boost:devtools-start', {
@@ -46,10 +44,8 @@ function start () {
   )
 }
 
-function restart () {
-  const enabledList = supervisorElement
-    ? Object.keys(supervisorElement.enabledDevtools)
-    : []
+function restart() {
+  const enabledList = supervisorElement ? Object.keys(supervisorElement.enabledDevtools) : []
 
   stop()
   start()
@@ -59,21 +55,21 @@ function restart () {
   })
 }
 
-function started () {
+function started() {
   return !!supervisorElement
 }
 
-function stopped () {
+function stopped() {
   return !started()
 }
 
 let restartTimeout
-function debouncedRestart () {
+function debouncedRestart() {
   clearTimeout(restartTimeout)
   restartTimeout = setTimeout(restart, 25)
 }
 
-function autoRestart () {
+function autoRestart() {
   if (started()) debouncedRestart()
 }
 
@@ -87,7 +83,7 @@ if (window.TurboBoost) {
   addEventListener(TurboBoost.Commands.events.finish, autoRestart)
 }
 
-function register (name, label) {
+function register(name, label) {
   if (!supervisorElement) return
   return appendHTML(
     `
@@ -99,7 +95,7 @@ function register (name, label) {
   )
 }
 
-function enabled (name) {
+function enabled(name) {
   if (!supervisorElement) return false
   return supervisorElement.enabledDevtools[name]
 }
@@ -110,10 +106,10 @@ export default {
   start,
   stop,
   restart: debouncedRestart,
-  get started () {
+  get started() {
     return started()
   },
-  get stopped () {
+  get stopped() {
     return stopped()
   }
 }

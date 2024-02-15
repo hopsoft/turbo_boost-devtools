@@ -2,27 +2,25 @@ const added = []
 
 const dependencies = {
   LeaderLine: {
-    src:
-      'https://cdnjs.cloudflare.com/ajax/libs/leader-line/1.0.7/leader-line.min.js',
+    src: 'https://cdnjs.cloudflare.com/ajax/libs/leader-line/1.0.7/leader-line.min.js',
     integrity:
       'sha512-0dNdzMjpT6pJdFGF1DwybFCfm3K/lzHhxaMXC/92J9/DZujHlqYFqmhTOAoD0o+LkeEsVK2ar/ESs7/Q2B6wJg==',
     global: 'LeaderLine'
   },
 
   PlainDraggable: {
-    src:
-      'https://cdn.jsdelivr.net/npm/plain-draggable@2.5.14/plain-draggable.min.js',
+    src: 'https://cdn.jsdelivr.net/npm/plain-draggable@2.5.14/plain-draggable.min.js',
     global: 'PlainDraggable'
   }
 }
 
-function exists (dependency) {
+function exists(dependency) {
   if (dependency.global && self[dependency.global]) return true
   if (document.querySelector(`[src='${dependency.src}']`)) return true
   return added.includes(dependency)
 }
 
-function add (dependency) {
+function add(dependency) {
   if (exists(dependency)) return
   added.push(dependency)
 
@@ -35,18 +33,17 @@ function add (dependency) {
   document.head.appendChild(script)
 }
 
-function remove (dependency) {
+function remove(dependency) {
   if (!added.includes(dependency)) return
   added.splice(added.indexOf(dependency), 1)
 
   const { src } = dependency
   const el = document.querySelector(`script[src='${src}']`)
   if (el) el.remove()
-  if (dependency.global && self[dependency.global])
-    self[dependency.global] = null
+  if (dependency.global && self[dependency.global]) self[dependency.global] = null
 }
 
-function removeAll () {
+function removeAll() {
   ;[...added].forEach(dependency => remove(dependency))
 }
 
