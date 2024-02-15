@@ -25,8 +25,8 @@ function decorateElementWithDevtool(element, name, label) {
       this.devtool?.hide({ active: false })
     },
     removeDevtool() {
-      this.devtool?.hide({ active: false })
-      this.devtool?.unregisterEventListeners()
+      if (this.devtool?.hide) this.devtool.hide({ active: false })
+      if (this.devtool?.unregisterEventListeners) this.devtool.unregisterEventListeners()
       delete this.devtool
     },
     name,
